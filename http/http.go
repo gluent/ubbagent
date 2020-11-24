@@ -80,7 +80,7 @@ func (h *HttpInterface) Start(errHandler func(error)) error {
 	if h.srv != nil {
 		return errors.New("already started")
 	}
-	h.srv = &http.Server{Addr: fmt.Sprintf("localhost:%v", h.port), Handler: &h.mux}
+	h.srv = &http.Server{Addr: fmt.Sprintf("0.0.0.0:%v", h.port), Handler: &h.mux}
 	go func() {
 		errHandler(h.srv.ListenAndServe())
 	}()
